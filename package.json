@@ -1,8 +1,8 @@
 {
-  "name": "api-piffs",
+  "name": "api-imaginamos",
   "version": "1.0.0",
-  "description": "API REST Portal de información de tráfico ilegal de fauna silvestre",
-  "main": "index.js",
+  "description": "API REST ",
+  "author": "Marlon Zayro Arias Vargas",
   "scripts": {
     "test": "mocha test/ -t 10000",
     "test-markdown": "mocha test/ -R markdown > doc/spec.md --recursive",
@@ -10,7 +10,6 @@
     "start": "node index.js",
     "start-dev": "nodemon index.js"
   },
-  "author": "Edward",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.6",
