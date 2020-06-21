@@ -3,7 +3,7 @@
 module.exports = {
 	db: {
 	  client: 'pg',
-	  connection: 'postgres://postgres:zayro8905@localhost:5432/imaginamos',
+	  connection: process.env.DATABASE_URL || 'postgres://postgres:zayro8905@localhost:5432/imaginamos',
 	},
 	port: process.env.PORT || 3000,	
 	dblocal:  'postgres://postgres:zayro8905@localhost:5432/imaginamos',
