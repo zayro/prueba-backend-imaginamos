@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "API REST ",
   "author": "Marlon Zayro Arias Vargas",
+  "private": true,
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "test": "mocha test/ -t 10000",
     "test-markdown": "mocha test/ -R markdown > doc/spec.md --recursive",
