@@ -1,0 +1,11 @@
+    <section class="suite">
+      <h1>GET /cliente</h1>
+      <dl>
+        <dt>respond with json containing a list of all cliente</dt>
+        <dd><pre><code>request(app)
+    .get(&#x27;/cliente&#x27;)
+    .set(&#x27;Accept&#x27;, &#x27;application/json&#x27;)
+    .expect(&#x27;Content-Type&#x27;, /json/)
+    .expect(200, done());</code></pre></dd>
+      </dl>
+    </section>

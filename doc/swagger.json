@@ -1,0 +1,211 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "WEB API",
+    "description": "Descripción del API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/cliente": {
+      "get": {
+        "tags": [
+          "cliente"
+        ],
+        "description": "Obtener Cliente",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna todos los clientes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/cliente"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "cliente"
+        ],
+        "description": "Crear nueva nuevo contacto",
+        "parameters": [
+          {
+            "name": "Contacto",
+            "in": "body",
+            "description": "Formato del contacto a crear",
+            "schema": {
+              "$ref": "#/definitions/Contacto"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Nuevo contacto creado",
+            "schema": {
+              "$ref": "#/definitions/Contacto"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "cliente"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/cliente"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update user with give ID",
+        "tags": [
+          "cliente"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/cliente"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Autoridad is updated",
+            "schema": {
+              "$ref": "#/definitions/cliente"
+            }
+          }
+        }
+      }
+    },
+    "/tecnico": {
+      "get": {
+        "tags": [
+          "tecnico"
+        ],
+        "summary": "Get row with given ID",
+        "responses": {
+          "200": {
+            "description": "row is found",
+            "schema": {
+              "$ref": "#/definitions/general"
+            }
+          }
+        }
+      }
+    },
+    "/tecnico/ticket/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Id del tecnico que se desea buscar",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "tecnico"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "row is found",
+            "schema": {
+              "$ref": "#/definitions/general"
+            }
+          }
+        }
+      }
+    },
+    "/ticket": {
+      "parameters": [
+        {
+          "name": "ticket",
+          "in": "path",
+          "required": true,
+          "description": "Id del contacto que desea buscar",
+          "type": "string"
+        }
+      ],
+      "post": {
+        "tags": [
+          "ticket"
+        ],
+        "description": "Crear nueva nuevo contacto",
+        "parameters": [
+          {
+            "name": "Contacto",
+            "in": "body",
+            "description": "Formato del contacto a crear",
+            "schema": {
+              "$ref": "#/definitions/Contacto"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Nuevo contacto creado",
+            "schema": {
+              "$ref": "#/definitions/Contacto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "general": {
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  }
+}
