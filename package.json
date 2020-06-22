@@ -9,7 +9,7 @@
     "npm": "6.x"
   },
   "scripts": {
-    "test": "mocha test/ -t 10000",
+    "test": "mocha test/",
     "test-markdown": "mocha test/ -R markdown > doc/spec.md --recursive",
     "test-html": "mocha test/ -R doc > doc/spec.html --recursive",
     "start": "node index.js",
@@ -26,6 +26,7 @@
     "errorhandler": "^1.5.0",
     "express": "^4.16.1",
     "express-fileupload": "^0.3.0",
+    "method-override": "^2.1.3",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.1",
     "moment": "^2.27.0",

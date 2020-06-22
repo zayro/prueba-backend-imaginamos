@@ -12,10 +12,7 @@ function GenerateTicket(req, res) {
 
     ticket.create().then(reponse => {
         if (reponse) {
-            return res.status(201).send({
-                success: true,
-                data: reponse
-            });
+            return res.status(201).send(message(true, 'respuesta exitosa', reponse));
         } else {
             return res.status(500).send(message(false, 'ocurrio un problema'));
         }
@@ -27,20 +24,18 @@ function GenerateTicket(req, res) {
 
 async function GenerateTransaction(req, res) {
 
-    const  id_servicio_solicitud = await general.max('servicio_solicitud', 'id_servicio_solicitud');
+    const id_servicio_solicitud = await general.max('servicio_solicitud', 'id_servicio_solicitud');
 
     const data = {
-        id_servicio_solicitud: id_servicio_solicitud+1,
-        identificacion_cliente: req.body.identificacion_cliente
+        id_servicio_solicitud: id_servicio_solicitud + 1,
+        identificacion_cliente: req.body.identificacion_cliente,
+        descripcion: req.body.descripcion
     };
-
-    console.log(data);
-
 
 
     ticket.transacction(data).then(response => {
 
-        console.log('transacction',response)
+        console.log('transacction', response)
 
         return res.status(201).send({
             success: true,
@@ -49,18 +44,14 @@ async function GenerateTransaction(req, res) {
 
     }).catch(error => {
 
-        console.log('error',error)
+        console.log('error', error)
 
-        return res.status(500).send({
-            success: false,
-            data: 'ocurrio un problema'
-        });
+        return res.status(500).send(message(false, 'ocurrio un problema', error));
 
     });
 
 
 }
-
 
 module.exports = {
     GenerateTicket,

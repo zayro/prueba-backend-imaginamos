@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "https://api-imaginamos.herokuapp.com/",
+  "host": "localhost:3000",
   "basePath": "/api/v1",
   "schemes": [
     "http"
@@ -53,7 +53,7 @@
             "in": "body",
             "description": "Formato del contacto a crear",
             "schema": {
-              "$ref": "#/definitions/general"
+              "$ref": "#/definitions/clienteGuardar"
             }
           }
         ],
@@ -68,12 +68,23 @@
             }
           }
         }
-      },
+      }
+    },
+    "/cliente/{id}": {
       "delete": {
         "summary": "Delete user with given ID",
         "tags": [
           "cliente"
         ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del campo a eliminar",
+            "type": "string"
+          }
+        ],        
         "responses": {
           "200": {
             "description": "User is deleted",
@@ -90,11 +101,18 @@
         ],
         "parameters": [
           {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del campo a eliminar",
+            "type": "string"
+          },
+          {
             "name": "user",
             "in": "body",
             "description": "User with new values of properties",
             "schema": {
-              "$ref": "#/definitions/cliente"
+              "$ref": "#/definitions/clienteActualizar"
             }
           }
         ],
@@ -108,12 +126,40 @@
         }
       }
     },
+    "/ticket/CrearTicket": {
+      "post": {
+        "tags": [
+          "ticket"
+        ],
+        "description": "Crear nueva nuevo contacto",
+        "parameters": [
+          {
+            "name": "Contacto",
+            "in": "body",
+            "description": "Formato del contacto a crear",
+            "schema": {
+              "$ref": "#/definitions/ticketCrear"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Nuevo contacto creado",
+            "schema": {
+              "$ref": "#/definitions/general"
+            }
+          }
+        }
+      }
+    },    
     "/tecnico": {
       "get": {
         "tags": [
           "tecnico"
         ],
-        "summary": "Get row with given ID",
         "responses": {
           "200": {
             "description": "row is found",
@@ -149,44 +195,40 @@
         }
       }
     },
-    "/ticket": {
+    "/calificacion/{id}": {
       "parameters": [
         {
-          "name": "ticket",
+          "name": "id",
           "in": "path",
           "required": true,
-          "description": "Id del contacto que desea buscar",
+          "description": "Id del tecnico que se desea buscar",
           "type": "string"
+        },
+        {
+          "name": "calificacion",
+          "in": "body",
+          "description": "calificacion with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/calificacioneActualizar"
+          }
         }
       ],
-      "post": {
+      "put": {
         "tags": [
-          "ticket"
+          "calificacion servicio"
         ],
-        "description": "Crear nueva nuevo contacto",
-        "parameters": [
-          {
-            "name": "Contacto",
-            "in": "body",
-            "description": "Formato del contacto a crear",
-            "schema": {
-              "$ref": "#/definitions/general"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "summary": "Get user with given ID",
         "responses": {
           "200": {
-            "description": "Nuevo contacto creado",
+            "description": "row is found",
             "schema": {
               "$ref": "#/definitions/general"
             }
           }
         }
       }
-    }
+    }    
+
   },
   "definitions": {
     "general": {
@@ -207,6 +249,40 @@
         }
       }
     },
+    "clienteGuardar": {
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "identificacion": {
+          "type": "string"
+        }
+      }
+    },
+    "clienteActualizar": {
+      "properties": {
+        "nombre": {
+          "type": "string"
+        }        
+      }
+    },
+    "calificacioneActualizar": {
+      "properties": {
+        "calificacion": {
+          "type": "number"
+        }        
+      }
+    },    
+    "ticketCrear": {
+      "properties": {
+        "identificacion_cliente": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        }
+      }
+    },        
     "cliente": {
       "properties": {
         "response": {
@@ -227,3 +303,4 @@
     }    
   }
 }
+

@@ -9,15 +9,9 @@ const {
 function getAll(req, res) {
 
     cliente.select().then(reponse => {
-        return res.status(200).send({
-            success: true,
-            data: reponse
-        });
+        return res.status(200).send(message(true,'respuesta exitosa',reponse));
     }).catch(error => {
-        return res.status(500).send({
-            success: false,
-            message: error
-        });
+        return res.status(500).send(message(false, 'no se encontraron registros', error));
     })
 
 }
@@ -28,10 +22,11 @@ function getOne(req, res) {
 
 	cliente.search(id).then(reponse => {
 		if (reponse) {
-			return res.status(200).send({
-				success: true,
-				data: reponse
-			});
+			return res.status(200).send(message(
+				true,
+				'respuesta exitosa',
+				reponse
+			));
 		} else {
 			return res.status(200).send(message(false, 'no se encontraron registros'));
 		}
@@ -53,15 +48,12 @@ async function save(req, res){
 
     cliente.insert(data).then(reponse => {
 		if (reponse) {
-			return res.status(200).send({
-				success: true,
-				data: reponse
-			});
+			return res.status(200).send(message(true,'respuesta exitosa',reponse));
 		} else {
 			return res.status(200).send(message(false, 'no se encontraron registros'));
 		}
 	}).catch(error => {
-        return res.status(200).send(message(false, error));
+        return res.status(500).send(message(false, error));
     });
     
 
@@ -79,10 +71,7 @@ async function update(req, res){
 
     cliente.update(id, data).then(reponse => {
 		if (reponse) {
-			return res.status(200).send({
-				success: true,
-				data: reponse
-			});
+			return res.status(200).send(message(true,'proceso exitoso', reponse));
 		} else {
 			return res.status(200).send(message(false, 'no se encontraron registros'));
 		}
@@ -98,10 +87,7 @@ async function destroy(req, res){
 
     cliente.delete(id).then(reponse => {
 		if (reponse) {
-			return res.status(200).send({
-				success: true,
-				data: reponse
-			});
+			return res.status(200).send(message(true,'proceso exitoso', reponse));
 		} else {
 			return res.status(200).send(message(false, 'no se encontraron registros'));
 		}

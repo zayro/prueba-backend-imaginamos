@@ -8,6 +8,7 @@ const api = express.Router();
 const cliente = require('../controllers/cliente');
 const ticket = require('../controllers/ticket');
 const tecnico = require('../controllers/tecnico');
+const calificacion = require('../controllers/calificacion');
 const servicioSeguimiento = require('../controllers/servicio_seguimiento');
 
 
@@ -20,7 +21,7 @@ const servicioSeguimiento = require('../controllers/servicio_seguimiento');
 api.get('/', (req, res) => {
 
 	return res.status(200).send({
-		message: "Welcome to Api Imaginemsos "
+		message: "Welcome to Api Imaginamos "
 	});
 
 });
@@ -36,10 +37,16 @@ api.get('/ticket/insecure', ticket.GenerateTicket);
 api.post('/ticket/CrearTicket', ticket.GenerateTransaction);
 
 
+api.get('/tecnico/', tecnico.getAll);
+api.get('/tecnico/:id', tecnico.getOne);
 api.get('/tecnico/ticket/:id', tecnico.GetTicketAsign);
+
 
 api.get('/servicio_seguimiento', servicioSeguimiento.getAll);
 api.get('/servicio_seguimiento/:id', servicioSeguimiento.getOne);
 
+api.get('/calificacion', calificacion.getAll);
+api.get('/calificacion/:id', calificacion.getOne);
+api.put('/calificacion/:id', calificacion.update);
 
 module.exports = api;
