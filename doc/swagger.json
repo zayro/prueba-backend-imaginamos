@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:3000",
+  "host": "https://api-imaginamos.herokuapp.com/",
   "basePath": "/api/v1",
   "schemes": [
     "http"
@@ -36,7 +36,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/cliente"
+                "$ref": "#/definitions/general"
               }
             }
           }
@@ -53,7 +53,7 @@
             "in": "body",
             "description": "Formato del contacto a crear",
             "schema": {
-              "$ref": "#/definitions/Contacto"
+              "$ref": "#/definitions/general"
             }
           }
         ],
@@ -64,7 +64,7 @@
           "200": {
             "description": "Nuevo contacto creado",
             "schema": {
-              "$ref": "#/definitions/Contacto"
+              "$ref": "#/definitions/general"
             }
           }
         }
@@ -170,7 +170,7 @@
             "in": "body",
             "description": "Formato del contacto a crear",
             "schema": {
-              "$ref": "#/definitions/Contacto"
+              "$ref": "#/definitions/general"
             }
           }
         ],
@@ -181,7 +181,7 @@
           "200": {
             "description": "Nuevo contacto creado",
             "schema": {
-              "$ref": "#/definitions/Contacto"
+              "$ref": "#/definitions/general"
             }
           }
         }
@@ -206,6 +206,24 @@
           }
         }
       }
-    }
+    },
+    "cliente": {
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }    
   }
 }

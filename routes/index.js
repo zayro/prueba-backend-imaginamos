@@ -8,6 +8,7 @@ const api = express.Router();
 const cliente = require('../controllers/cliente');
 const ticket = require('../controllers/ticket');
 const tecnico = require('../controllers/tecnico');
+const servicioSeguimiento = require('../controllers/servicio_seguimiento');
 
 
 
@@ -26,12 +27,19 @@ api.get('/', (req, res) => {
 
 api.get('/cliente', cliente.getAll);
 api.get('/cliente/:id', cliente.getOne);
+api.post('/cliente', cliente.save);
+api.put('/cliente/:id', cliente.update);
+api.delete('/cliente/:id', cliente.destroy);
 
-api.get('/ticket', ticket.GenerateTicket);
-api.get('/ticket/secure', ticket.GenerateTransaction);
+
+api.get('/ticket/insecure', ticket.GenerateTicket);
+api.post('/ticket/CrearTicket', ticket.GenerateTransaction);
 
 
 api.get('/tecnico/ticket/:id', tecnico.GetTicketAsign);
+
+api.get('/servicio_seguimiento', servicioSeguimiento.getAll);
+api.get('/servicio_seguimiento/:id', servicioSeguimiento.getOne);
 
 
 module.exports = api;

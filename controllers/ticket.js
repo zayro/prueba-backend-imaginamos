@@ -1,4 +1,5 @@
 const ticket = require('../model/ticket');
+const general = require('../model/general');
 
 const {
     message
@@ -24,12 +25,20 @@ function GenerateTicket(req, res) {
 
 }
 
-function GenerateTransaction(req, res) {
+async function GenerateTransaction(req, res) {
 
-    const data = {};
+    const  id_servicio_solicitud = await general.max('servicio_solicitud', 'id_servicio_solicitud');
+
+    const data = {
+        id_servicio_solicitud: id_servicio_solicitud+1,
+        identificacion_cliente: req.body.identificacion_cliente
+    };
+
+    console.log(data);
 
 
-    ticket.transacction().then(response => {
+
+    ticket.transacction(data).then(response => {
 
         console.log('transacction',response)
 
