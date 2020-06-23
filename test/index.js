@@ -36,8 +36,6 @@ describe('GET /cliente', function () {
 
 
 
-
-
 describe('POST /ticket/CrearTicket',  () => {
     it('respond with json containing to create support ticket', function (done)  {
              request(app)
