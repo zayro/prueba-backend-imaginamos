@@ -11,6 +11,14 @@ Se debe tener instalado
 
 clonar el repositorio y ejecutar el comando `npm install`  
 
+## Ejecutar aplicacion entorno desarrollo local
+
+- [x] install postgresql y agregar base de datos ubicado en la carpeta db
+- [x] npm start
+- [x] npm run start-dev
+- [x] npm test
+
+
 ## Status Codes
 devuelve los siguientes códigos de estado en el API:
 

@@ -2,9 +2,18 @@
 const request = require('supertest');
 const app = require('../app');
 const expect = require('chai').expect;
-
+const knex = require('../db')
 
 //==================== user API test ====================
+
+before(async () => {
+    await console.log('antes de ...');
+     
+});
+
+after(async () => {
+    await console.log('despues de ...');
+});
 
 /**
  * Testing get all user endpoint
@@ -12,51 +21,57 @@ const expect = require('chai').expect;
 describe('GET /cliente', function () {
     it('respond with json containing a list of all cliente', function (done) {
         request(app)
-            .get('/cliente')
+            .get('/api/v1/cliente')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .expect(200, done());
+            .expect(200)
+            .end(function(err, res) {
+              if (err) throw err;              
+              expect(res.status).to.equal(200);
+              done()
+            });
     });
 });
 
-describe('GET /cliente', function () {
-    it('respond with json containing a list of all cliente', function (done) {
-        request(app)
-            .post('/cliente')
-            .set('Accept', 'application/json')
-            .send({
-                "nombre": "pepito",
-                "identificacion": "10200343"
-            })
-            .expect('Content-Type', /json/)
-            .expect(200, done());
-    });
-});
 
-describe('GET /tecnico', function () {
-    it('respond with json containing a list of all tecnico', function (done) {
-        request(app)
-            .get('/cliente')
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(200, done());
-    });
-});
 
-/*
+
+
+
 describe('POST /ticket/CrearTicket',  () => {
-    it('respond with json containing to create support ticket', async (done) => {
-       await request(app)
-            .post('/ticket/CrearTicket')
+    it('respond with json containing to create support ticket', function (done)  {
+             request(app)
+            .post('/api/v1/ticket/CrearTicket')
             .send({
-                "identificacion_clientea": "102030",
-                "descripcione": "arrego del tv"
-            })
+                "identificacion_cliente": "102030",
+                "descripcion": "arrego del tv"
+            })            
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .expect(500)
+            .expect(201)
+            .end(function(err, res) {
+                if (err) throw err;                            
+                done()
+              });
             
     });
 });
 
-*/
+
+describe('PUT /calificacion/1',  () => {
+    it('respond with json containing to create support ticket', function (done)  {
+             request(app)
+            .put('/api/v1/calificacion/1')
+            .send({
+                "calificacion": 10
+            })            
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .end(function(err, res) {
+                if (err) throw err;                            
+                done()
+              });
+            
+    });
+});

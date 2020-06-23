@@ -35,8 +35,7 @@ async function GenerateTransaction(req, res) {
 
     ticket.transacction(data).then(response => {
 
-        console.log('transacction', response)
-
+        
         return res.status(201).send({
             success: true,
             data: 'se ha creado ticket'
